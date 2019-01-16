@@ -9,50 +9,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="jameskoch.view_controller.AddProductController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jameskoch.view_controller.AddProductController">
    <children>
-      <AnchorPane layoutY="4.0" prefHeight="500.0" prefWidth="800.0">
+      <AnchorPane layoutX="6.0" layoutY="1.0" prefHeight="500.0" prefWidth="800.0">
          <children>
             <Label layoutX="56.0" layoutY="57.0" text="Add Product">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="481.0" layoutY="58.0" mnemonicParsing="false" text="Search" />
-            <TextField layoutX="559.0" layoutY="58.0" />
+            <Button layoutX="489.0" layoutY="23.0" mnemonicParsing="false" onAction="#AddProductsSearchPartAddBtn" text="Search" />
+            <TextField fx:id="AddProductAddPartSearchField" layoutX="559.0" layoutY="23.0" promptText="Part to add" />
             <Label layoutX="27.0" layoutY="124.0" text="ID" />
             <Label layoutX="27.0" layoutY="169.0" text="Name" />
             <Label layoutX="27.0" layoutY="211.0" text="Inv" />
             <Label layoutX="27.0" layoutY="256.0" text="Price" />
             <Label layoutX="27.0" layoutY="305.0" text="Max" />
-            <TextField layoutX="108.0" layoutY="129.0" />
-            <TextField layoutX="108.0" layoutY="165.0" />
-            <TextField layoutX="108.0" layoutY="207.0" />
-            <TextField layoutX="108.0" layoutY="252.0" />
-            <TextField layoutX="108.0" layoutY="301.0" prefHeight="25.0" prefWidth="65.0" />
+            <TextField fx:id="IdTextField" layoutX="108.0" layoutY="129.0" promptText="ID" />
+            <TextField fx:id="NameTextfield" layoutX="108.0" layoutY="165.0" promptText="name" />
+            <TextField fx:id="InventoryTextField" layoutX="108.0" layoutY="207.0" promptText="Inventory" />
+            <TextField fx:id="PriceTextField" layoutX="108.0" layoutY="252.0" promptText="Price" />
+            <TextField fx:id="MaxTextField" layoutX="108.0" layoutY="301.0" prefHeight="25.0" prefWidth="65.0" promptText="Max Inv" />
             <Label layoutX="183.0" layoutY="305.0" text="Min" />
-            <TextField layoutX="215.0" layoutY="301.0" prefHeight="25.0" prefWidth="65.0" />
-            <TableView layoutX="333.0" layoutY="97.0" prefHeight="134.0" prefWidth="457.0">
+            <TextField fx:id="MinTextField" layoutX="215.0" layoutY="301.0" prefHeight="25.0" prefWidth="65.0" promptText="Min Inv" />
+            <TableView fx:id="AddTableView" layoutX="333.0" layoutY="57.0" prefHeight="134.0" prefWidth="457.0">
               <columns>
-                <TableColumn prefWidth="98.0" text="Part ID" />
-                <TableColumn prefWidth="127.0" text="Part Name" />
-                  <TableColumn prefWidth="127.0" text="Inventory Level" />
-                  <TableColumn prefWidth="104.0" text="Price Per Unit" />
+                <TableColumn fx:id="AddPartIdTableColumn" prefWidth="98.0" text="Part ID" />
+                <TableColumn fx:id="AddPartNameTableColumn" prefWidth="127.0" text="Part Name" />
+                  <TableColumn fx:id="AddInventoryLevelTableColumn" prefWidth="127.0" text="Inventory Level" />
+                  <TableColumn fx:id="AddPricePerUnitTableColumn" prefWidth="104.0" text="Price Per Unit" />
               </columns>
             </TableView>
-            <Button layoutX="733.0" layoutY="244.0" mnemonicParsing="false" text="Add" />
-            <TableView layoutX="333.0" layoutY="285.0" prefHeight="134.0" prefWidth="457.0">
+            <Button layoutX="733.0" layoutY="199.0" mnemonicParsing="false" onAction="#AddProductsAddPartBtn" text="Add" />
+            <TableView fx:id="DeleteTableView" layoutX="333.0" layoutY="285.0" prefHeight="134.0" prefWidth="457.0">
                <columns>
-                  <TableColumn prefWidth="98.0" text="Part ID" />
-                  <TableColumn prefWidth="127.0" text="Part Name" />
-                  <TableColumn prefWidth="127.0" text="Inventory Level" />
-                  <TableColumn prefWidth="104.0" text="Price Per Unit" />
+                  <TableColumn fx:id="DeletePartIdColumn" prefWidth="98.0" text="Part ID" />
+                  <TableColumn fx:id="DeletePartNameTableColumn" prefWidth="127.0" text="Part Name" />
+                  <TableColumn fx:id="DeleteInventoryLevelTableColumn" prefWidth="127.0" text="Inventory Level" />
+                  <TableColumn fx:id="DeletePricePerUnitTableColumn" prefWidth="104.0" text="Price Per Unit" />
                </columns>
             </TableView>
-            <Button layoutX="733.0" layoutY="432.0" mnemonicParsing="false" text="Delete" />
-            <Button layoutX="667.0" layoutY="474.0" mnemonicParsing="false" text="Save" />
-            <Button layoutX="733.0" layoutY="474.0" mnemonicParsing="false" text="Cancel" />
+            <Button layoutX="733.0" layoutY="432.0" mnemonicParsing="false" onAction="#AddProductsDeletePartBtn" text="Delete" />
+            <Button layoutX="667.0" layoutY="474.0" mnemonicParsing="false" onAction="#AddProductsSaveButtonClicked" text="Save" />
+            <Button layoutX="733.0" layoutY="474.0" mnemonicParsing="false" onAction="#AddProductsCancelClicked" text="Cancel" />
+            <Button layoutX="489.0" layoutY="244.0" mnemonicParsing="false" onAction="#AddProductsSearchPartDeleteBtn" text="Search" />
+            <TextField fx:id="AddProductDeletePartSearchField" layoutX="559.0" layoutY="244.0" prefHeight="25.0" prefWidth="149.0" promptText="Part to remove" />
+            <Button layoutX="719.0" layoutY="23.0" mnemonicParsing="false" onAction="#ClearSearchAdd" text="Clear" />
+            <Button layoutX="719.0" layoutY="244.0" mnemonicParsing="false" onAction="#ClearSearchRemove" text="Clear" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

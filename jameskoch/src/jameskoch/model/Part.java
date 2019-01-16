@@ -5,48 +5,120 @@
  */
 package jameskoch.model;
 
+
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author james
  */
 public abstract class Part {
-//    - id : int
-    int id; 
-//    - name : String
-    String name;
-//    - price : double
-    double price;
-//    - stock : int
-    int stock;
-//    - min : int
-    int min;
-//    - max : int
-    int max;
-    new part(int idIn, String nameIn, double priceIn, int stockIn, int minIn, int maxIn){
-        id = idIn;
-        name = nameIn;
-        price = priceIn;
-        stock = stockIn;
-        min = minIn;
-        max = maxIn;
-        
-    } 
-//    + Part(id : int, name : String,
-//price : double, stock : int, min : int, max : int)
-//+ setId(id:int):void
-    int setID int idIn(){
-    return -99;
-}
-//+ setName(name:String):void
-//+ setPrice(price:double):void
-//+ setStock(stock:int):void
-//+ setMin(min:int):void
-//+ setMax(max:int):void
-//+ setPrice(max:int):void
-//+ getId():int
-//+ getName():String
-//+ getPrice():double + getStock():int
-//+ getMin():int
-//+ getMax():int
-    
+    //Instance variables
+    private final StringProperty name;
+    private final IntegerProperty partID;
+    private final DoubleProperty price;
+    private final IntegerProperty inStock;
+    private final IntegerProperty min;
+    private final IntegerProperty max;
+
+    //Contructor
+    public Part() {
+        partID = new SimpleIntegerProperty();
+        name = new SimpleStringProperty();
+        price = new SimpleDoubleProperty();
+        inStock = new SimpleIntegerProperty();
+        min = new SimpleIntegerProperty();
+        max = new SimpleIntegerProperty();
+    }
+
+    public IntegerProperty partIDProperty() {
+        return partID;
+    }
+
+    public StringProperty partNameProperty() {
+        return name;
+    }
+
+    public DoubleProperty partPriceProperty() {
+        return price;
+    }
+
+    public IntegerProperty partInvProperty() {
+        return inStock;
+    }
+
+//Getters
+    public int getPartID() {
+        return this.partID.get();
+    }
+
+    public String getPartName() {
+        return this.name.get();
+    }
+
+    public double getPartPrice() {
+        return this.price.get();
+    }
+
+    public int getPartInStock() {
+        return this.inStock.get();
+    }
+
+    public int getPartMin() {
+        return this.min.get();
+    }
+
+    public int getPartMax() {
+        return this.max.get();
+    }
+
+    //Setters
+    public void setPartID(int partID) {
+        this.partID.set(partID);
+    }
+
+    public void setPartName(String name) {
+        this.name.set(name);
+    }
+
+    public void setPartPrice(double price) {
+        this.price.set(price);
+    }
+
+    public void setPartInStock(int inStock) {
+        this.inStock.set(inStock);
+    }
+
+    public void setPartMin(int min) {
+        this.min.set(min);
+    }
+
+    public void setPartMax(int max) {
+        this.max.set(max);
+    }
+
+    //Part Validation Method
+    public static String isPartValid(String name, int min, int max, int inv, double price, String errorMessage) {
+        if (name == null) {
+            errorMessage = errorMessage + ("Name field is blank.");
+        }
+        if (inv < 1) {
+            errorMessage = errorMessage + ("The inventory must be greater than 0.");
+        }
+        if (price < 1) {
+            errorMessage = errorMessage + ("The price must be greater than $0");
+        }
+        if (min > max) {
+            errorMessage = errorMessage + ("The inventory MIN must be less than the MAX.");
+        }
+        if (inv < min || inv > max) {
+            errorMessage = errorMessage + ("Part inventory must be between MIN and MAX values.");
+        }
+        return errorMessage;
+    }
 }
